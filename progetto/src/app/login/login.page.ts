@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Data } from '../service/data';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  email = '';
+  password = '';
 
-  constructor() { }
+  constructor(private dataService: Data, private router: Router) {}
 
-  ngOnInit() {
+  login() {
+    if(this.email && this.password) {
+      this.dataService.login();
+      this.router.navigate(['/profilo']);
+    }
   }
 
+  back() { this.router.navigate(['/home']); }
 }
+

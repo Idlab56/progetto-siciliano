@@ -1,20 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>TicketApp</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/profilo">
+        <ion-icon name="person-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar placeholder="Cerca eventi..." (ionInput)="cerca($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content color="light">
+  <div class="category-bar">
+    <ion-chip *ngFor="let cat of categorie" (click)="filtra(cat)" [outline]="cat !== catAttiva">
+      <ion-label>{{cat}}</ion-label>
+    </ion-chip>
   </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let ev of eventiFiltrati">
+        <ion-card class="event-card" [routerLink]="['/dettaglio', ev.id]">
+          <img [src]="ev.immagineCopertina" />
+          <ion-card-header>
+            <ion-card-subtitle color="primary">{{ev.data}}</ion-card-subtitle>
+            <ion-card-title>{{ev.titolo}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><ion-icon name="location-outline"></ion-icon> {{ev.luogo}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

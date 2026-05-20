@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "titolo": "Coldplay - Music of the Spheres",
+    "categoria": "Concerti",
+    "data": "12 Luglio 2026",
+    "orario": "21:00",
+    "luogo": "Stadio San Siro, Milano",
+    "descrizione": "L'evento dell'anno torna in Italia con uno show visivo incredibile.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800",
+    "prezzo": 85
+  },
+  {
+    "id": 2,
+    "titolo": "Il Lago dei Cigni",
+    "categoria": "Teatro",
+    "data": "05 Giugno 2026",
+    "orario": "20:30",
+    "luogo": "Teatro alla Scala, Milano",
+    "descrizione": "La magia del balletto classico in una cornice mozzafiato.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800",
+    "prezzo": 45
+  },
+  {
+    "id": 3,
+    "titolo": "Festival del Cinema Aperto",
+    "categoria": "Incontri",
+    "data": "20 Giugno 2026",
+    "orario": "18:00",
+    "luogo": "Piazza Maggiore, Bologna",
+    "descrizione": "Proiezioni gratuite e incontri con i registi sotto le stelle.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800",
+    "prezzo": 0
+  }
+]

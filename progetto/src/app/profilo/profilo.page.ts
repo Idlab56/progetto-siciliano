@@ -1,20 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Data } from '../service/data';
 
 @Component({
   selector: 'app-profilo',
   templateUrl: './profilo.page.html',
   styleUrls: ['./profilo.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class ProfiloPage implements OnInit {
+export class ProfiloPage {
+  preferiti: any[] = [];
 
-  constructor() { }
+  constructor(private dataService: Data, private router: Router) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.dataService.isLoggedIn().subscribe(logged => {
+      if (!logged) this.router.navigate(['/login']);
+      else this.preferiti = this.dataService.getPreferiti();
+    });
   }
 
+  rimuovi(id: number) {
+    this.dataService.rimuoviPreferito(id);
+    this.preferiti = this.dataService.getPreferiti();
+  }
+
+  logout() {
+    this.dataService.logout();
+    this.router.navigate(['/home']);
+  }
 }
