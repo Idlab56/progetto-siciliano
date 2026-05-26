@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/home"></ion-back-button></ion-buttons>
+    <ion-title>Dettaglio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="evento">
+  <div class="hero" [style.backgroundImage]="'url('+evento.immagineCopertina+')'"></div>
+  
+  <div class="main-info">
+    <ion-badge color="primary">{{evento.categoria}}</ion-badge>
+    <h1>{{evento.titolo}}</h1>
+    <p class="price">A partire da {{evento.prezzo}}€</p>
+    
+    <ion-item lines="none">
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>{{evento.data}} - ore {{evento.orario}}</ion-label>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      <ion-label>{{evento.luogo}}</ion-label>
+    </ion-item>
+
+    <div class="desc">
+      <h3>Descrizione</h3>
+      <p>{{evento.descrizione}}</p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="salva()" color="primary" shape="round">
+      <ion-icon name="heart-outline" slot="start"></ion-icon>
+      Salva nei preferiti
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

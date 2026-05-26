@@ -1,0 +1,23 @@
+<ion-content class="ion-padding ion-text-center">
+  <div class="login-header">
+    <ion-icon name="ticket-outline" size="large" color="primary"></ion-icon>
+    <h1>Bentornato</h1>
+    <p>Accedi per gestire i tuoi eventi</p>
+  </div>
+
+  <ion-item lines="full" class="ion-margin-top">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="login()" class="ion-margin-top" shape="round">
+    Entra
+  </ion-button>
+  
+  <p (click)="back()" class="cancel">Annulla</p>
+</ion-content>
