@@ -35,3 +35,22 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+	--ion-color-primary: #e30613;
+	--ion-color-primary-contrast: #fff;
+}
+
+ion-card {
+	border-radius: 18px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+	overflow: hidden;
+}
+
+ion-card img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	display: block;
+}
+

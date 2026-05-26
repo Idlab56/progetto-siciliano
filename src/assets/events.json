@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "titolo": "Concerto Rock: Night Vibes",
+    "categoria": "Concerti",
+    "data": "2026-06-15",
+    "orario": "21:00",
+    "luogo": "Arena Centrale, Milano",
+    "descrizione": "Una notte di rock con band internazionali e locali.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    "prezzo": 45.0
+  },
+  {
+    "id": 2,
+    "titolo": "Teatro: Il Sogno dell'Attore",
+    "categoria": "Teatro",
+    "data": "2026-07-02",
+    "orario": "20:30",
+    "luogo": "Teatro Verdi, Firenze",
+    "descrizione": "Uno spettacolo teatrale contemporaneo premiato dalla critica.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=80",
+    "prezzo": 30.0
+  },
+  {
+    "id": 3,
+    "titolo": "Incontro: Startups & Innovation",
+    "categoria": "Incontri",
+    "data": "2026-05-30",
+    "orario": "10:00",
+    "luogo": "Spazio Eventi, Roma",
+    "descrizione": "Talks e workshop sulle startup e le nuove tecnologie.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1496180727794-817822f65950?auto=format&fit=crop&w=1200&q=80",
+    "prezzo": 0.0
+  },
+  {
+    "id": 4,
+    "titolo": "Concerto Jazz: Sunset Sessions",
+    "categoria": "Concerti",
+    "data": "2026-08-20",
+    "orario": "19:30",
+    "luogo": "Club del Jazz, Torino",
+    "descrizione": "Set intimo con musicisti acclamati e atmosfera rilassata.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1506152983158-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+    "prezzo": 25.0
+  },
+  {
+    "id": 5,
+    "titolo": "Incontro Letterario: Parole in Circolo",
+    "categoria": "Incontri",
+    "data": "2026-09-11",
+    "orario": "18:00",
+    "luogo": "Libreria Centrale, Bologna",
+    "descrizione": "Autori e letture dal vivo per una serata culturale.",
+    "immagineCopertina": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80",
+    "prezzo": 10.0
+  }
+]

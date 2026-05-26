@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profilo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>I tuoi preferiti</h2>
+  <ion-list>
+    <ion-item *ngFor="let e of preferiti">
+      <ion-label>
+        <h3>{{ e.titolo }}</h3>
+        <p>{{ e.data }} - {{ e.luogo }}</p>
+      </ion-label>
+      <ion-button slot="end" color="danger" (click)="rimuoviPreferito(e.id)">Rimuovi</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div style="margin-top:16px;">
+    <ion-button expand="block" color="primary" (click)="logout()">Logout</ion-button>
+  </div>
+</ion-content>
