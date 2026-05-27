@@ -9,8 +9,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>I tuoi preferiti</h2>
-  <ion-list>
+  <div *ngIf="user">
+    <h2>Ciao, {{ user.nome }}</h2>
+    <p>Email: {{ user.email }}</p>
+  </div>
+
+  <h3 style="margin-top:24px;">I tuoi preferiti</h3>
+  <ion-list *ngIf="preferiti.length > 0; else noFavorites">
     <ion-item *ngFor="let e of preferiti">
       <ion-label>
         <h3>{{ e.titolo }}</h3>
@@ -19,6 +24,9 @@
       <ion-button slot="end" color="danger" (click)="rimuoviPreferito(e.id)">Rimuovi</ion-button>
     </ion-item>
   </ion-list>
+  <ng-template #noFavorites>
+    <p>Nessun evento salvato nei preferiti.</p>
+  </ng-template>
 
   <div style="margin-top:16px;">
     <ion-button expand="block" color="primary" (click)="logout()">Logout</ion-button>

@@ -6,7 +6,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabe
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
-// Pagina di login semplificata: accetta email e password e imposta lo stato di accesso.
+// Pagina di login e registrazione: salva gli utenti in JSON locale e gestisce l'accesso.
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -15,20 +15,59 @@ import { DataService } from '../services/data.service';
   imports: [CommonModule, FormsModule, RouterModule, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonButtons, IonMenuButton, IonBackButton],
 })
 export class LoginPage {
-  // Campi di input della pagina di login.
   email = '';
   password = '';
+  nome = '';
+  confermaPassword = '';
+  isRegister = false;
 
   constructor(private dataService: DataService, private router: Router, private toastCtrl: ToastController) {}
 
-  // Effettua il login: controlla i campi, aggiorna lo stato e indirizza alla pagina profilo.
+  async submit() {
+    if (this.isRegister) {
+      await this.register();
+    } else {
+      await this.login();
+    }
+  }
+
   async login() {
     if (!this.email || !this.password) {
-      const t = await this.toastCtrl.create({ message: 'Inserisci email e password', duration: 1500, color: 'warning' });
-      await t.present();
+      await this.presentToast('Inserisci email e password', 'warning');
       return;
     }
-    this.dataService.login();
-    await this.router.navigate(['/profilo']);
+    const result = this.dataService.loginUser(this.email, this.password);
+    if (!result.success) {
+      await this.presentToast(result.message, 'danger');
+      return;
+    }
+    await this.router.navigate(['/home']);
+  }
+
+  async register() {
+    if (!this.email || !this.password || !this.nome || !this.confermaPassword) {
+      await this.presentToast('Compila tutti i campi', 'warning');
+      return;
+    }
+    if (this.password !== this.confermaPassword) {
+      await this.presentToast('Le password non corrispondono', 'warning');
+      return;
+    }
+    const result = this.dataService.registerUser(this.email, this.password, this.nome);
+    if (!result.success) {
+      await this.presentToast(result.message, 'danger');
+      return;
+    }
+    await this.presentToast('Registrazione completata', 'success');
+    await this.router.navigate(['/home']);
+  }
+
+  toggleMode() {
+    this.isRegister = !this.isRegister;
+  }
+
+  private async presentToast(message: string, color: 'success' | 'warning' | 'danger') {
+    const toast = await this.toastCtrl.create({ message, duration: 1800, color });
+    await toast.present();
   }
 }

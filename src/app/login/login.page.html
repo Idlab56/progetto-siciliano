@@ -4,11 +4,16 @@
       <ion-menu-button autoHide="false"></ion-menu-button>
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Login</ion-title>
+    <ion-title>{{ isRegister ? 'Registrazione' : 'Login' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-item *ngIf="isRegister">
+    <ion-label position="stacked">Nome</ion-label>
+    <ion-input [(ngModel)]="nome" type="text"></ion-input>
+  </ion-item>
+
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
     <ion-input [(ngModel)]="email" type="email"></ion-input>
@@ -17,8 +22,17 @@
     <ion-label position="stacked">Password</ion-label>
     <ion-input [(ngModel)]="password" type="password"></ion-input>
   </ion-item>
+  <ion-item *ngIf="isRegister">
+    <ion-label position="stacked">Conferma password</ion-label>
+    <ion-input [(ngModel)]="confermaPassword" type="password"></ion-input>
+  </ion-item>
 
-  <div style="margin-top:16px;">
-    <ion-button expand="block" color="primary" (click)="login()">Accedi</ion-button>
+  <div style="margin-top:16px; display:flex; gap:12px; flex-direction:column;">
+    <ion-button expand="block" color="primary" (click)="submit()">
+      {{ isRegister ? 'Registrati' : 'Accedi' }}
+    </ion-button>
+    <ion-button fill="clear" expand="block" (click)="toggleMode()">
+      {{ isRegister ? 'Ho già un account' : 'Non hai un account? Registrati' }}
+    </ion-button>
   </div>
 </ion-content>
