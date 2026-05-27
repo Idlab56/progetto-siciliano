@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Evento } from '../models/event.model';
 
+// Servizio centrale che gestisce gli eventi, i preferiti e lo stato di autenticazione.
 @Injectable({ providedIn: 'root' })
 export class DataService {
   private preferitiKey = 'preferiti';
@@ -17,14 +18,17 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getEventi(): Observable<Evento[]> {
+    // Carica la lista eventi dal file JSON locale.
     return this.http.get<Evento[]>('assets/events.json');
   }
 
   getEvento(id: number): Observable<Evento | undefined> {
+    // Restituisce l'evento con l'id specificato, filtrando la lista completa.
     return this.getEventi().pipe(map((list) => list.find((e) => e.id === id)));
   }
 
   private readPreferiti(): Evento[] {
+    // Legge i preferiti salvati in localStorage e gestisce eventuali errori di parsing.
     try {
       return JSON.parse(localStorage.getItem(this.preferitiKey) || '[]');
     } catch {
@@ -38,6 +42,7 @@ export class DataService {
   }
 
   aggiungiPreferito(evento: Evento): void {
+    // Aggiunge un evento alla lista preferiti se non è già presente.
     const list = this.readPreferiti();
     if (!list.find((e) => e.id === evento.id)) {
       list.push(evento);
@@ -47,6 +52,7 @@ export class DataService {
   }
 
   rimuoviPreferito(id: number): void {
+    // Rimuove un evento dai preferiti e aggiorna lo stato.
     const list = this.readPreferiti().filter((e) => e.id !== id);
     localStorage.setItem(this.preferitiKey, JSON.stringify(list));
     this._preferiti.next(list);

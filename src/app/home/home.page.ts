@@ -21,6 +21,7 @@ import {
 import { DataService } from '../services/data.service';
 import { Evento } from '../models/event.model';
 
+// Pagina principale che mostra l'elenco eventi, i filtri per categoria e la ricerca.
 @Component({
   standalone: true,
   selector: 'app-home',
@@ -47,13 +48,18 @@ import { Evento } from '../models/event.model';
   ],
 })
 export class HomePage implements OnInit {
+  // Elenco completo di eventi caricati dal servizio.
   eventi: Evento[] = [];
+  // Elenco di eventi filtrati in base a categoria o ricerca.
   eventiFiltrati: Evento[] = [];
+  // Categorie uniche estratte dalla lista eventi per il filtro.
   categorie: string[] = [];
+  // Termine di ricerca inserito dall'utente.
   searchTerm = '';
 
   constructor(private dataService: DataService) {}
 
+  // Carica gli eventi all'avvio della pagina e inizializza i filtri.
   ngOnInit(): void {
     this.dataService.getEventi().subscribe((list) => {
       this.eventi = list;
@@ -62,6 +68,7 @@ export class HomePage implements OnInit {
     });
   }
 
+  // Applica filtro per categoria. Se la categoria è vuota, mostra tutti gli eventi.
   filtra(categoria: string): void {
     if (!categoria) {
       this.eventiFiltrati = [...this.eventi];
@@ -70,6 +77,7 @@ export class HomePage implements OnInit {
     this.eventiFiltrati = this.eventi.filter((e) => e.categoria === categoria);
   }
 
+  // Cerca il termine nella proprietà titolo, descrizione o luogo.
   cerca(termine: string): void {
     this.searchTerm = termine || '';
     const t = this.searchTerm.toLowerCase();

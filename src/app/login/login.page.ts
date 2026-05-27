@@ -6,6 +6,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabe
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
+// Pagina di login semplificata: accetta email e password e imposta lo stato di accesso.
 @Component({
   standalone: true,
   selector: 'app-login',
@@ -14,13 +15,14 @@ import { DataService } from '../services/data.service';
   imports: [CommonModule, FormsModule, RouterModule, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonButtons, IonMenuButton, IonBackButton],
 })
 export class LoginPage {
+  // Campi di input della pagina di login.
   email = '';
   password = '';
 
   constructor(private dataService: DataService, private router: Router, private toastCtrl: ToastController) {}
 
+  // Effettua il login: controlla i campi, aggiorna lo stato e indirizza alla pagina profilo.
   async login() {
-    // semplice validazione
     if (!this.email || !this.password) {
       const t = await this.toastCtrl.create({ message: 'Inserisci email e password', duration: 1500, color: 'warning' });
       await t.present();

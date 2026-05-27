@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+// Definisce le rotte principali dell'applicazione.
+// Usa componenti lazy-loaded per caricare le pagine solo quando necessario.
 export const routes: Routes = [
   {
     path: 'home',

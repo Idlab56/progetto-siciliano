@@ -1,3 +1,4 @@
+// Modello dati per un evento dell'applicazione.
 export interface Evento {
   id: number;
   titolo: string;

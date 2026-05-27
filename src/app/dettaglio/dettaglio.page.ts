@@ -21,6 +21,7 @@ import { DataService } from '../services/data.service';
 import { Evento } from '../models/event.model';
 import { take } from 'rxjs/operators';
 
+// Pagina dettaglio evento: mostra i dettagli dell'evento selezionato e permette di salvare nei preferiti.
 @Component({
   standalone: true,
   selector: 'app-dettaglio',
@@ -44,6 +45,7 @@ import { take } from 'rxjs/operators';
   ],
 })
 export class DettaglioPage implements OnInit {
+  // Evento selezionato a cui mostrare i dettagli.
   evento: Evento | undefined;
 
   constructor(
@@ -53,6 +55,7 @@ export class DettaglioPage implements OnInit {
     private router: Router
   ) {}
 
+  // Legge l'id dalla rotta e carica i dettagli dell'evento corrispondente.
   ngOnInit(): void {
     this.route.paramMap.subscribe((pm) => {
       const id = Number(pm.get('id'));
@@ -62,6 +65,7 @@ export class DettaglioPage implements OnInit {
     });
   }
 
+  // Salva l'evento nei preferiti se l'utente è autenticato, altrimenti reindirizza al login.
   async salva(): Promise<void> {
     this.dataService.isLoggedIn$.pipe(take(1)).subscribe(async (logged) => {
       if (!logged) {
